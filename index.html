@@ -15,12 +15,13 @@
             <input type="button" class="calcButton" value="7" id="7" onclick="setNumber('7')">
             <input type="button" class="calcButton" value="8" id="8" onclick="setNumber('8')">
             <input type="button" class="calcButton" value="9" id="9" onclick="setNumber('9')">
-            <input type="button" class="calcButton" value="+" id="add">
-            <input type="button" class="calcButton" value="-" id="subtract">
-            <input type="button" class="calcButton" value="*" id="multiply">
-            <input type="button" class="calcButton" value="/" id="divide">
-            <input type="button" class="calcButton" value="C" id="clear">
-            <input type="button" class="calcButton" value="=" id="resolve">
+            <input type="button" class="calcButton" value="0" id="0" onclick="setNumber('0')">
+            <input type="button" class="calcButton" value="+" id="add" onclick="operate('add')">
+            <input type="button" class="calcButton" value="-" id="sub" onclick="operate('sub')">
+            <input type="button" class="calcButton" value="*" id="mul" onclick="operate('mul')">
+            <input type="button" class="calcButton" value="/" id="div" onclick="operate('div')">
+            <input type="button" class="calcButton" value="C" id="clear" onclick="setNumber('')">
+            <input type="button" class="calcButton" value="=" id="resolve" onclick="operate('resolve')">
         </div>
         <script src="calc.js"></script>
     </body>
