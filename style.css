@@ -1,32 +1,47 @@
 html {
-    background: rgb(226, 248, 206);
+    background: #5CDB95;
 }
 
 .calc_section {
     margin-left: 40%;
     margin-top: 100px;
-    width: 300px;
-    background: white;
+    width: 366px;
+    background: #05386B;
     display: flex;
     flex-wrap: wrap;
-    padding: 10px;
     justify-content: center;
 }
 
+#add,#sub,#mul,#div,#resolve {
+    background: #669683;
+}
+
 #numValue {
-    width: 280px;
-    height: 40px;
-    margin-bottom: 10px;
+    width: 366px;
+    height: 80px;
+    text-align: right;
+    font-size: 28px;
+    background: #05386B;
+    border: 0;
+    color: white;
 }
 
 .calcButton {
-    margin: 10px;
-    width: 70px;
-    height: 30px;
+    margin: 1px;
+    width: 120px;
+    height: 60px;
     border: 0;
-    background: white;
+    background: #EDF5E1;
+    font-size: 21px;
 }
 
 .calcButton:hover {
-    background: lightgreen;
+    background: #379683;
+    color: white;
+    font-weight: bolder;
+}
+
+
+.calcButton::-moz-focus-inner {
+    border: 0;
 }

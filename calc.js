@@ -1,6 +1,39 @@
-const number=document.getElementById('numValue');
-let numberOne;
-let task;
+function add(num1,num2) {
+    return num1+num2;
+}
+
+function subtract(num1,num2) {
+    return num1-num2;
+}
+
+function multiply(num1,num2) {
+    return num1*num2;
+}
+
+function divide(num1,num2) {
+    return num1/num2;
+}
+
+function operate(num1, num2, opt) {
+    let result=0;
+    switch (opt) {
+        case 'add':
+            result = add(num1,num2);
+            break;
+        case 'sub':
+            result = subtract(num1,num2);
+            break;
+        case 'mul':
+            result = multiply(num1,num2);
+            break;
+        case 'div':
+            result = divide(num1,num2);
+            break;
+        default:
+            result = 0;
+    }
+}
+
 function setNumber(num) {
     if(num==='') {
         number.value='';
@@ -13,22 +46,15 @@ function setNumber(num) {
     }
 }
 
-function operate(opt) {
-    if (opt==='resolve') {
-        switch (task) {
-            case 'add':
-                number.value=numberOne+Number(number.value);
-                break;
-            case 'sub':
-                number.value=numberOne-Number(number.value);
-                break;
-            default:
-                number.value=numberOne+Number(number.value);
-        }
-    } else {
-        task=opt;
-        numberOne= Number(number.value);
-        number.value='';
-    }
-    
+
+const number=document.getElementById('numValue');
+const numButton=document.getElementsByClassName('calcButton');
+let numberOne;
+let task;
+
+for (let i=0;i<numButton.length;i++) {
+    numButton[i].addEventListener('click',function (e) {
+        
+    });
 }
+
