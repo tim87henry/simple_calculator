@@ -26,7 +26,7 @@ html {
     color: white;
 }
 
-.calcButton {
+.numButton,.operButton {
     margin: 1px;
     width: 120px;
     height: 60px;
@@ -35,13 +35,13 @@ html {
     font-size: 21px;
 }
 
-.calcButton:hover {
+.numButton:hover,.operButton:hover {
     background: #379683;
     color: white;
     font-weight: bolder;
 }
 
 
-.calcButton::-moz-focus-inner {
+input::-moz-focus-inner {
     border: 0;
 }
