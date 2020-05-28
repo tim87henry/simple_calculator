@@ -11,7 +11,14 @@ function multiply(num1,num2) {
 }
 
 function divide(num1,num2) {
-    return Number(num1) / Number(num2);
+    if (num2==='0') {
+        alert("Divide by zero not allowed");
+        numberOne = numberTwo = 0;
+        firstOperation = true;
+        return 0;
+    } else {
+        return Number(num1) / Number(num2);
+    }
 }
 
 function operate(num1, num2, opt) {
@@ -29,9 +36,13 @@ function operate(num1, num2, opt) {
         case '/':
             result = divide(num1,num2);
             break;
+        case '=':
+            result = numberOne;
+            break;
         default:
             result = 0;
     }
+    lastKeyIsANumber = false;
     numberOne = result;
     numDisplay.value = result;
 }
@@ -43,7 +54,11 @@ function setNumber(num) {
     if(num==='') {
         numDisplay.value='';
     } else {
-        if (numDisplay.value==='0') {
+        if (num === '.') {
+            //alert(numDisplay.value.match(/\./g).length);
+            numDisplay.value=numDisplay.value+num;
+        }
+        else if (numDisplay.value==='0') {
             numDisplay.value=num;
         } else {
             numDisplay.value=numDisplay.value+num;
@@ -61,23 +76,36 @@ let numberTwo=0;
 let task;
 let firstOperation=true;
 let clearDisplay=false;
+let lastKeyIsANumber=false;
 
 for (let i=0;i<numButton.length;i++) {
     numButton[i].addEventListener('click',function (e) {
         setNumber(e.target.value);
+        lastKeyIsANumber = true;
     });
 }
 
-for (let i=0;i<numButton.length;i++) {
+for (let i=0;i<operButton.length;i++) {
     operButton[i].addEventListener('click',function (e) {
-        if(firstOperation) {
+        if (e.target.value==='C') {
+            numDisplay.value = '0';
+            numberOne = numberTwo = 0;
+            firstOperation = true;
+        } else if (e.target.value==='DEL') {
+            if (lastKeyIsANumber) {
+                numDisplay.value = numDisplay.value.slice(0,numDisplay.value.length-1); 
+                lastKeyIsANumber = true;
+            }
+        } else if (firstOperation) {
             firstOperation = false;
             numberOne = numDisplay.value;
+            task = e.target.value;
             clearDisplay = true;
         } else {
             numberTwo = numDisplay.value;
             clearDisplay = true;
-            operate(numberOne,numberTwo,e.target.value);    
+            operate(numberOne,numberTwo,task);
+            task = e.target.value;
         }
     });
 }
