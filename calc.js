@@ -55,8 +55,9 @@ function setNumber(num) {
         numDisplay.value='';
     } else {
         if (num === '.') {
-            //alert(numDisplay.value.match(/\./g).length);
-            numDisplay.value=numDisplay.value+num;
+            if (numDisplay.value.match(/\./g)===null) {
+                numDisplay.value=numDisplay.value+num;
+            }
         }
         else if (numDisplay.value==='0') {
             numDisplay.value=num;
