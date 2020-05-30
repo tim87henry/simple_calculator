@@ -23,6 +23,8 @@ function divide(num1,num2) {
 
 function operate(num1, num2, opt) {
     let result=0;
+    lastKeyIsANumber = false;
+    task = task==='Enter'? '=': task;
     switch (opt) {
         case '+':
             result = add(num1,num2);
@@ -38,11 +40,12 @@ function operate(num1, num2, opt) {
             break;
         case '=':
             result = numberOne;
+            lastKeyIsANumber = true;
+            numberOne = numDisplay.value;
             break;
         default:
             result = 0;
     }
-    lastKeyIsANumber = false;
     numberOne = result;
     numDisplay.value = result;
 }
@@ -92,21 +95,49 @@ for (let i=0;i<operButton.length;i++) {
             numDisplay.value = '0';
             numberOne = numberTwo = 0;
             firstOperation = true;
-        } else if (e.target.value==='DEL') {
-            if (lastKeyIsANumber) {
-                numDisplay.value = numDisplay.value.slice(0,numDisplay.value.length-1); 
-                lastKeyIsANumber = true;
+        } else if (lastKeyIsANumber) {
+            if (e.target.value==='DEL') {
+                    numDisplay.value = numDisplay.value.slice(0,numDisplay.value.length-1); 
+                    lastKeyIsANumber = true;
+            } else if (firstOperation) {
+                firstOperation = false;
+                numberOne = numDisplay.value;
+                task = e.target.value;
+                clearDisplay = true;
+            } else {
+                numberTwo = numDisplay.value;
+                clearDisplay = true;
+                operate(numberOne,numberTwo,task);
+                task = e.target.value;
             }
-        } else if (firstOperation) {
+        }
+    });
+}
+
+
+// Keyboard support
+calcOperators = ['+','-','=','/','*','Enter']
+document.addEventListener('keydown', function(e) {
+    if (Number(e.key) < 10 && e.which != 32) {
+        setNumber(e.key);
+        lastKeyIsANumber = true;
+    } else if (calcOperators.includes(e.key) && lastKeyIsANumber) {
+        if (firstOperation) {
             firstOperation = false;
             numberOne = numDisplay.value;
-            task = e.target.value;
+            task = e.key;
             clearDisplay = true;
         } else {
             numberTwo = numDisplay.value;
             clearDisplay = true;
             operate(numberOne,numberTwo,task);
-            task = e.target.value;
+            task = e.key;
         }
-    });
-}
+    } else if (e.keyCode === 8 && lastKeyIsANumber) {
+        if (lastKeyIsANumber) {
+            numDisplay.value = numDisplay.value.slice(0,numDisplay.value.length-1); 
+            lastKeyIsANumber = true;
+        }
+    }
+});
+ 
