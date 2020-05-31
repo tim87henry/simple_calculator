@@ -40,8 +40,6 @@ function operate(num1, num2, opt) {
             break;
         case '=':
             result = numberOne;
-            lastKeyIsANumber = true;
-            numberOne = numDisplay.value;
             break;
         default:
             result = 0;
@@ -95,6 +93,8 @@ for (let i=0;i<operButton.length;i++) {
             numDisplay.value = '0';
             numberOne = numberTwo = 0;
             firstOperation = true;
+        } else if (task === '=') {
+            task=e.target.value;
         } else if (lastKeyIsANumber) {
             if (e.target.value==='DEL') {
                     numDisplay.value = numDisplay.value.slice(0,numDisplay.value.length-1); 
@@ -118,13 +118,19 @@ for (let i=0;i<operButton.length;i++) {
 // Keyboard support
 calcOperators = ['+','-','=','/','*','Enter']
 document.addEventListener('keydown', function(e) {
+    if (e.which === 13) {
+        e.key='=';
+    }
     if (Number(e.key) < 10 && e.which != 32) {
         setNumber(e.key);
         lastKeyIsANumber = true;
+    } else if (task === '=') {
+        task=e.key;
     } else if (calcOperators.includes(e.key) && lastKeyIsANumber) {
         if (firstOperation) {
             firstOperation = false;
             numberOne = numDisplay.value;
+            alert("HAs")
             task = e.key;
             clearDisplay = true;
         } else {
