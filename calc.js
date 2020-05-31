@@ -130,7 +130,6 @@ document.addEventListener('keydown', function(e) {
         if (firstOperation) {
             firstOperation = false;
             numberOne = numDisplay.value;
-            alert("HAs")
             task = e.key;
             clearDisplay = true;
         } else {
