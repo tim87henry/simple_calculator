@@ -1,12 +1,13 @@
 html {
-    background: #5CDB95;
+    background: #EEE2DC;
 }
 
 .calc_section {
     margin-left: 40%;
     margin-top: 100px;
-    width: 366px;
-    background: #05386B;
+    width: 400px;
+    padding: 20px 5px;
+    background: #BAB2B5;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -19,20 +20,23 @@ html {
 #numValue {
     width: 366px;
     height: 80px;
+    margin-bottom: 15px;
+    padding: 5px;
     text-align: right;
     font-size: 28px;
-    background: #05386B;
+    background: #123C69;
     border: 0;
     color: white;
 }
 
 .numButton,.operButton {
-    margin: 1px;
-    width: 120px;
-    height: 60px;
+    margin: 8px;
+    width: 80px;
+    height: 70px;
     border: 0;
     background: #EDF5E1;
     font-size: 21px;
+    border-radius: 6px;
 }
 
 .numButton:hover,.operButton:hover {
@@ -44,4 +48,12 @@ html {
 
 input::-moz-focus-inner {
     border: 0;
+}
+
+#resolve {
+    width: 175px; 
+}
+
+#dummy {
+    background: #AC3B61;
 }
